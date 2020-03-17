@@ -1,0 +1,43 @@
+// First we create a functin that takes in a string 
+// splits, reverses and reconstructs strings
+// returns trueor false if string is a palindrome or not
+
+function isPalindrome(sentence) {
+  var rev = sentence.split("").reverse().join("");
+  return sentence == rev;
+}
+
+// Second, we create a function that takes in the same sentence string 
+// return longest string in the array of strings
+
+
+function findLongestPalindrome(sentence){
+  var maxp_length = 0,
+	  maxp = '';
+	
+  for(var i=0; i < sentence.length; i++) {
+	var subs = sentence.substr(i, sentence.length);
+	  
+	for(var j=subs.length; j>=0; j--) {
+	  var sub_subs = subs.substr(0, j);
+	  if (sub_subs.length <= 1)
+		  continue;
+		
+      //console.log('checking: '+ sub_subs);
+      // if string is a palindrome and also the longest element, 
+      // return the string as the ouptut
+      if (isPalindrome(sub_subs)) {
+		//console.log('palindrome: '+ sub_subs);
+		if (sub_subs.length > maxp_length) {
+			maxp_length = sub_subs.length;
+			maxp = sub_subs;
+		}
+	  }
+	}
+  }
+	
+  //console.log(maxp_length, maxp);
+  return maxp;
+}
+
+findLongestPalindrome('This is an interesting sentence: kayak, november, anna') // should return 'kayak'
