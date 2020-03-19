@@ -1,0 +1,59 @@
+/*The task now is to find all the laced shoes. Output shoe names that contain "lace" in them, and indicate which word contains "lace".
+*/
+
+
+function getLaceNameDataForShoes(inventory) {
+  // define empty arr for entire array
+  // loop through inventory array
+  // loop through shoes array
+  // define empty obj to be elements of the entire array
+  // set variable equal to the shoe name's string
+  // if shoe name string includes the word "lace", then set "nameWords" property equal to an array of words
+  // if the array of words contains "lace-up", then set "targetWordIndex" property equal to the number index in which it appears
+  // if the array of words contains "laced", then set "targetWordIndex" property equal to the number index in which it appears
+  // push the object into empty array
+  // return array
+  
+
+var inventory = [
+  {
+    name: 'Brunello Cucinelli',
+    shoes: [
+      {name: 'tasselled black low-top lace-up', price: 1000},
+      {name: 'tasselled green low-top lace-up', price: 1100},
+      {name: 'plain beige suede moccasin', price: 950},
+      {name: 'plain olive suede moccasin', price: 1050}
+    ]
+  },
+  {
+    name: 'Gucci',
+    shoes: [
+      {name: 'red leather laced sneakers', price: 800},
+      {name: 'black leather laced sneakers', price: 900}
+    ]
+  }
+];
+
+function findLacedShoes(inventory) {
+  var lacedShoesList = [];
+  for (var i = 0; i < inventory.length; i++) {
+    for (var x = 0; x < inventory[i].shoes.length; x++) {
+      var lacedShoes = {};
+      var shoeNameString = inventory[i].shoes[x].name;
+      if (shoeNameString.includes("lace")) { // true for "lace-up" and "laced"
+        lacedShoes.nameWords = shoeNameString.split(" ");
+        if (lacedShoes.nameWords.includes("lace-up")) {
+          lacedShoes.targetWordIndex = lacedShoes.nameWords.indexOf("lace-up");
+        }
+        if (lacedShoes.nameWords.includes("laced")) {
+          lacedShoes.targetWordIndex = lacedShoes.nameWords.indexOf("laced");
+        }
+        lacedShoesList.push(lacedShoes);
+      }
+    }
+  }
+  return lacedShoesList;
+}
+
+
+console.log(findLacedShoes(inventory));
