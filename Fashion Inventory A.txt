@@ -1,0 +1,41 @@
+ You have a fashion catalog, an inventory of items from various high-fashion designers.
+ Each designer has a lineup of shoes. Each shoe has a name and a price. 
+ It looks like this
+
+const currentInventory = [
+  {
+    name 'Brunello Cucinelli',
+    shoes [
+      {name 'tasselled black low-top lace-up', price 1000},
+      {name 'tasselled green low-top lace-up', price 1100},
+      {name 'plain beige suede moccasin', price 950},
+      {name 'plain olive suede moccasin', price 1050}
+    ]
+  },
+  {
+    name 'Gucci',
+    shoes [
+      {name 'red leather laced sneakers', price 800},
+      {name 'black leather laced sneakers', price 900}
+    ]
+  }
+];
+
+ Looking up all the shoes across all the designers 
+ and listing them out in a array of arrays
+
+function renderInventory(inventory) {
+ var outPutArray = [];
+ 
+ inventory.map(items ={
+  for(var i = 0; i  items.shoes.length; i++){
+    outPutArray.push([items.name, items.shoes[i].name, items.shoes[i].price]);
+    }
+  });
+ 
+  return outPutArray;
+}
+
+
+console.log(renderInventory(currentInventory));
+
