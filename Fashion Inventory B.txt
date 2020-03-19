@@ -1,0 +1,66 @@
+
+/* You have a fashion catalog, an inventory of items from various high-fashion designers.
+Each designer has a lineup of shoes. Each shoe has a name and a price. 
+Now output the average cost of all shoes per designer in this format:
+
+{
+  'designers': [
+    {
+      'name': 'Brunello Cucinelli',
+      'averagePrice': 1025
+    },
+    {
+      'name': 'Gucci',
+      'averagePrice': 850
+    }
+  ]
+};*/ 
+
+const inventory = [
+  {
+    name: 'Brunello Cucinelli',
+    shoes: [
+      {name: 'tasselled black low-top lace-up', price: 1000},
+      {name: 'tasselled green low-top lace-up', price: 1100},
+      {name: 'plain beige suede moccasin', price: 950},
+      {name: 'plain olive suede moccasin', price: 1050}
+    ]
+  },
+  {
+    name: 'Gucci',
+    shoes: [
+      {name: 'red leather laced sneakers', price: 800},
+      {name: 'black leather laced sneakers', price: 900}
+    ]
+  }
+];
+
+function renderAverageCostPerDesigner(inventory) {
+ let Designer1 = DesignerObject(inventory[0].name, calculateAveragePrice(inventory[0].shoes));
+ let Designer2 = DesignerObject(inventory[1].name, calculateAveragePrice(inventory[1].shoes));
+
+ let outputObj = {'designers': createArray(Designer1, Designer2)};
+
+  return outputObj;
+}
+
+function calculateAveragePrice(array) {
+  let avg = 0;
+  array.forEach(function(elem) {
+    avg = avg += elem.price;
+  });
+  return avg / array.length;
+}
+
+function createArray(obj1, obj2) {
+  return [obj1, obj2];
+}
+
+function DesignerObject(name, averagePrice) {
+  return {
+    name: name,
+    averagePrice: averagePrice
+  };
+}
+
+console.log(renderAverageCostPerDesigner(inventory));
