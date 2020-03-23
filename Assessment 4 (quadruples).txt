@@ -3,38 +3,28 @@
 // The function will count how many times 4 even or 4 odd numbers show up in a row. 
 
 function quadruples(givenArray, evenOrOdd){
-    let theRightInteger = 0;
-    const n = givenArray.length;
-    let i, j, k, l;
-    for(i = 0; i < n; i++){
-      for(j = i + 1; j < n; j++){
-        for(k = j + 1; k < n; k++){
-          for(l = k + 1; l < n; l++){
-    if (givenArray[i] % 2 === 0 && evenOrOdd === "even"){
-      if (givenArray[j] % 2 === 0 && evenOrOdd === "even"){
-        if (givenArray[k] % 2 === 0 && evenOrOdd === "even"){
-          if (givenArray[l] % 2 === 0 && evenOrOdd === "even"){
-            theRightInteger =+1;
-            }
-          }
-        }
-      } 
-    else if (givenArray[i] % 3 === 0 && evenOrOdd === "odd"){
-      if (givenArray[j] % 3 === 0 && evenOrOdd === "odd"){
-        if (givenArray[k] % 3 === 0 && evenOrOdd === "odd"){
-          if (givenArray[l] % 3 === 0 && evenOrOdd === "odd"){
-            theRightInteger =+1;
-            }
-          }
-        }
-      }
-    
-          }
-        }
-      }
-    } return theRightInteger;
+  
+let theRightInteger = 0;
+const n = givenArray.length;
+let i, j, k, l;
+for(i = 0; i < n-3; i++){
+j = i+1;
+k = i+2;
+l = i+3;
+
+if (givenArray[i] % 2 === 0 && givenArray[j] % 2 === 0 && givenArray[k] % 2 === 0 && givenArray[l] % 2 === 0 && evenOrOdd === "even"){
+theRightInteger +=1;
+}
+else if (givenArray[i] % 2 !== 0 && givenArray[j] % 2 !== 0 && givenArray[k] % 2 !== 0 && givenArray[l] % 2 !== 0 && evenOrOdd === "odd"){
+theRightInteger +=1;
+}
+  
+}
+return theRightInteger;
 }
 
+
 quadruples([3,2,2,4,8,5], 'even');  // 1
-quadruples([2,4,6,8,10,5], 'even');  // 2
 quadruples([2,4,6,8,10,5], 'odd');  // 0
+quadruples([2,4,6,8,10,5], 'even');  // 2
+
