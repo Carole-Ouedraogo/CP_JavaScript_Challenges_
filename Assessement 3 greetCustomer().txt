@@ -1,0 +1,80 @@
+/*
+Part One: 
+
+Complete the function greetCustomer(). 
+Given a name, your function returns a greeting based on how many times that person has visited your establishment. 
+Essentially, you will check the name given to your function against the names in the customerData object. 
+The greeting should differ depending on the name on their reservation.
+
+If the  customer is not present in customerData: 
+greetCustomer('Terrance') // "Welcome! Is this your first time?"
+If the customer has visited only once ('visits' value is 1 ):
+greetCustomer('Joe') // "Welcome back, Joe! We're glad you liked us the first time!"
+If the customer is a repeat customer: ( 'visits' value is greater than 1 ):
+greetCustomer('Carol') // "Welcome back, Carol! So glad to see you again!"
+
+Note:
+* Your function should not alter the customerData object to update the number of visits.
+
+Part Two: 
+An isogram is a word that has no repeating letters, consecutive or non-consecutive. 
+Write and a function that returns true if the given word is an isogram and false if it is not (contains more than one of the same letter). 
+isogram('hello') // false
+isogram('cow') // true
+
+Notes:
+* Assume your input is only letters.*
+/
+
+var customerData = {
+ 'Joe': {
+   visits: 1
+ },
+ 'Carol': {
+   visits: 2
+ },
+ 'Howard': {
+   visits: 3
+ },
+ 'Carrie': {
+   visits: 4
+ }
+};
+
+
+function greetCustomer(name) {
+  var greeting = '';
+  for(var keys in customerData){
+    for(var value in customerData[keys]){
+      if (keys === name && customerData[keys][value] === 1) {
+      greeting = 'Welcome back, ' + name+ "! We're glad you liked us the first time!";
+      }
+    else if (keys === name && customerData[keys][value] > 1) {
+      greeting = 'Welcome back, '+ name + '! So glad to see you again!';
+    }
+    else if (!(name in customerData)){
+      greeting = "Welcome! Is this your first time?";
+      }
+    }
+   }
+  return greeting; 
+  }
+
+greetCustomer('Terrance');
+
+// Your code for Part Two here: 
+function isIsogram(text){
+   var i, j;
+   text = text.toLowerCase();
+   for(i = 0; i < text.length; ++i) {
+     for(j = i + 1; j < text.length; ++j) {
+       if(text[i] === text[j]) {
+         return false;
+       }
+     }
+   }
+   return true;
+}
+
+isIsogram('hello'); // false
+isIsogram('cow'); // true
